@@ -30,4 +30,21 @@ def test_name(testperson):
 def test_get_age(testperson): 
     "Test the get_age method."
     assert testperson.get_age(datetime.date(2021, 2, 3)) == 21   
+
+
+def test_recreate1(testperson):
+    """This is not a real test.
+    It demonstrates, that each function gets a fresh testperson object.
+    """
+    # we change the firstname of the testperson object
+    testperson.firstname = "Hans"
+    assert testperson.firstname == "Hans"
+    
+def test_recreate2(testperson):
+    """This is not a real test.
+    It demonstrates, that each function gets a fresh testperson object.
+    """
+    # We changed the firstname property in the previous test.
+    # But as each test function gets a fresh testperson object, the firstname is "Max" again.
+    assert testperson.firstname == "Max"
           
