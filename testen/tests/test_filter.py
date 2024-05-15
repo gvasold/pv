@@ -1,69 +1,28 @@
 from cities import filter_by_name, filter_by_population
 
 
-TESTDATA = [
-    {
-        "Stadt": "Linz",
-        "Bezirk": "Linz",
-        "Bundesland": "Upper Austria",
-        "Einwohner": 204846,
-    },
-    {"Stadt": "Graz", "Bezirk": "Graz", "Bundesland": "Styria", "Einwohner": 287723},
-]
-
-
-def test_filter_by_name_case_sensitive():
+def test_filter_by_name_case_sensitive(testdata):
     "Test case: Filter by name (case sensitive)"
-    assert filter_by_name(TESTDATA, "linz", case_sensitive=True) == []
-    assert filter_by_name(TESTDATA, "Linz", case_sensitive=True) == [
-        {
-            "Stadt": "Linz",
-            "Bezirk": "Linz",
-            "Bundesland": "Upper Austria",
-            "Einwohner": 204846,
-        }
-    ]
-    assert filter_by_name(TESTDATA, "in", case_sensitive=True) == [
-        {
-            "Stadt": "Linz",
-            "Bezirk": "Linz",
-            "Bundesland": "Upper Austria",
-            "Einwohner": 204846,
-        }
-    ]
+    assert filter_by_name(testdata, "linz", case_sensitive=True) == []
+    assert filter_by_name(testdata, "Linz", case_sensitive=True) == [
+        testdata[0]
+    ]  # Linz
+    assert filter_by_name(testdata, "in", case_sensitive=True) == [testdata[0]]  # Linz
+    assert filter_by_name(testdata, "inn", case_sensitive=True) == []
 
 
-def test_filter_by_name_case_insensitive():
+def test_filter_by_name_case_insensitive(testdata):
     "Test case: Filter by name (case sensitive)"
-    assert filter_by_name(TESTDATA, "linz", case_sensitive=False) == [
-        {
-            "Stadt": "Linz",
-            "Bezirk": "Linz",
-            "Bundesland": "Upper Austria",
-            "Einwohner": 204846,
-        }
-    ]
-    assert filter_by_name(TESTDATA, "Linz") == [
-        {
-            "Stadt": "Linz",
-            "Bezirk": "Linz",
-            "Bundesland": "Upper Austria",
-            "Einwohner": 204846,
-        }
-    ]
-    assert filter_by_name(TESTDATA, "in") == [
-        {
-            "Stadt": "Linz",
-            "Bezirk": "Linz",
-            "Bundesland": "Upper Austria",
-            "Einwohner": 204846,
-        }
-    ]
-    assert filter_by_name(TESTDATA, "inn") == []
+    assert filter_by_name(testdata, "linz", case_sensitive=False) == [
+        testdata[0]
+    ]  # Linz
+    assert filter_by_name(testdata, "Linz") == [testdata[0]]  # Linz
+    assert filter_by_name(testdata, "in") == [testdata[0]]  # Linz
+    assert filter_by_name(testdata, "inn") == []
 
 
-def test_filter_by_population():
+def test_filter_by_population(testdata):
     "Test case: Filter by population"
-    assert filter_by_population(TESTDATA, 200000) == [
-        {"Stadt": "Graz", "Bezirk": "Graz", "Bundesland": "Styria", "Einwohner": 287723}
-    ]
+    assert filter_by_population(testdata, 100000) == testdata
+    assert filter_by_population(testdata, 250000) == [testdata[1]]  # Graz
+    assert filter_by_population(testdata, 300000) == []
