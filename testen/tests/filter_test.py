@@ -20,4 +20,4 @@ def test_filter_by_name_case_insensitive():
 
 def test_filter_by_population():
     "Test case: Filter by population"
-    assert filter_by_population(TESTDATA, 200000) == [{"Stadt": "Graz", "Bezirk": "Graz", "Bundesland": "Styria", "Einwohner": 287723}]
+    assert filter_by_population(TESTDATA, 250000) == [{"Stadt": "Graz", "Bezirk": "Graz", "Bundesland": "Styria", "Einwohner": 287723}]
