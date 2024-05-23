@@ -36,14 +36,14 @@ def filter_by_name(
 
 
 def filter_by_population(
-    cities: "list[dict[str, str]]", min_population
+    cities: "list[dict[str, str]]", min_population: int
 ) -> List[Dict[str, str]]:
     """
     Return only rows where population is greater equals min_polulation.
     """
     result = []
     for row in cities:
-        if row["Einwohner"] <= min_population:
+        if row["Einwohner"] >= min_population:
             result.append(row)
     return result
 
