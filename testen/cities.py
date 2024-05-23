@@ -43,7 +43,7 @@ def filter_by_population(
     """
     result = []
     for row in cities:
-        if row["Einwohner"] <= min_population:
+        if row["Einwohner"] >= min_population:
             result.append(row)
     return result
 
