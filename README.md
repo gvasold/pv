@@ -85,3 +85,14 @@ To find out which parts of the code are not tested, we use this command:
 ```
 pytest --cov --cov-report=term-missing
 ```
+
+## Branch mocking
+
+This branch shown some very simple examples for mocking and patching existing
+functions and methods.
+
+  * foo_m.py - shows the core idea of mocking
+  * foo_mm.py - is an example module, which will be mocked/patched in the 
+                next two files
+  * test_foo_mm.py - Shows how to mock the load_data() method of foo_mm.py
+  * test_foo_p.py - Shows how to patch the load_data() method of foo_mm.py
